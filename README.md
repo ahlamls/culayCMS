@@ -4,3 +4,5 @@ jokiin si culay bikin airfrov kawe
 php native + bootstrap 4
 <br>
 gak tau males pake framework
+<br>
+<b>IMPORT dulu file culay.sql udah itu ganti informasi database di koneksi.php!!!</b>
