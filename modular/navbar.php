@@ -21,40 +21,50 @@
 <li class="nav-item">
 <div class="nav-link">
 </li>
+<?php
 
+if (!$login) {?>
 <li class="nav-item">
   <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#LoginModal">
   Daftar atau Masuk
   </button>
 </li>
+<?php } else {
+$saldo = 0;
+$sql = "SELECT saldo FROM `user` WHERE `id` = $uid";
+$result = $conn->query($sql);
 
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+    $saldo = $row['saldo'];
+    }
+} else {
+  $saldo = 0;
+}
+$conn->close();
+
+  ?>
 <li class="nav-item dropdown">
      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-       <i class="far fa-user"></i> NamaUser
+       <i class="far fa-user"></i> <?php echo $uname ?>
      </a>
      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-       <a class="dropdown-item" href="#">Action</a>
-       <a class="dropdown-item" href="#">Another action</a>
+      <a class="dropdown-item"  href="saldo.php"><b>Saldo: Rp <?php echo number_format($saldo) ?></b></a>
+       <a class="dropdown-item" href="trx.php">Transaksi</a>
        <div class="dropdown-divider"></div>
-       <a class="dropdown-item" href="#">Something else here</a>
+       <a class="dropdown-item" href="logout.php">Logout</a>
      </div>
    </li>
 </div>
 
 <li class="nav-item">
-  <button type="button" class="btn btn-info">
-  Request
-  </button>
+  <a href="post.php"><button type="button" class="btn btn-success">
+  Post
+</button></a>
 </li>
-
-<li class="nav-item">
-  <button type="button" class="btn btn-info">
-  Menawarkan
-  </button>
-</li>
-
 </div>
-
+<?php } ?>
 
 
 </div>
