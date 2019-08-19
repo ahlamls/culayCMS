@@ -1,34 +1,65 @@
 <?php
 require_once "modular/header.php";
 
-$kotalist = ""; //isi kota
-$produklist = "";
-//handler onclick javascript
+if (!isset($_GET['kat']) AND !isset($_GET['kota']) AND !isset($_GET['search']) AND !isset($_GET['user'])) {
+  $title = "Daftar Produk";
+  $query = "";
+} else if (isset($_GET['kat'])){
+  //$title = "Makanan";
+  $kat = eskep($_GET['kat']);
+    $query = "WHERE `kat_id` = $kat";
 
-$sql = "SELECT * FROM kota";
+    $sql = "SELECT nama FROM kategori WHERE `id` = '$kat'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     // output data of each row
     while($row = $result->fetch_assoc()) {
-      $gambar = $row['gambar'];
-      $nama = $row['nama'];
-      $aidi = $row['id'];
-$kotalist .= "<div class='col-6 col-md-3 pesbar'>
-  <div class='pesbarimg' onclick='pesbarclick($aidi)'>
-  <img src='$gambar' class='pesbarimgx'>
-  <div class='pesbarimgtext'>
-  <h3 class='pesbarimgtextx'>$nama</h3>
-  </div>
-  </div>
-</div>";
-
-      }
+        $title = $row['nama'];
+    }
 } else {
-    $kotalist = "Tidak ada Kota";
+  die("Invalid Kategori");
 }
+} else if (isset($_GET['kota'])){
+  //$title="Bogor";
+  $kota = eskep($_GET['kota']);
+    $query = "WHERE `kota_id` = $kota";
 
-$sql = "SELECT * FROM produk ORDER BY `id` DESC LIMIT 0,8";
+    $sql = "SELECT nama FROM kota WHERE `id` = '$kota'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        $title = $row['nama'];
+    }
+} else {
+  die("Invalid Kota");
+}
+} else if (isset($_GET['search'])) {
+
+  $search = eskep(htmlentities($_GET['search']));
+    $title="Hasil Pencarian : " . $search;
+    $query = "WHERE `judul` LIKE '%$search%'";
+} else if (isset($_GET['user'])) {
+
+  $search = eskep(htmlentities($_GET['user']));
+
+    $query = "WHERE `user_id` = '$search'";
+
+    $sql = "SELECT name FROM user WHERE `id` = '$search'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+          $title="User : " . $row['name'];
+    }
+} else {
+  die("Invalid User");
+}
+}
+$sql = "SELECT * FROM produk $query ORDER BY `id` DESC ";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -114,31 +145,19 @@ $produklist .= "<div class='col-xs-12 col-md-3 pcard'>
 
 <main role="main" class="container">
 <br>
-  <h1 class="d-none d-lg-block d-md-block">Lihat Pesanan Barang Sesuai Kota</h1>
-    <h3 class="d-block d-lg-none d-md-none ">Lihat Pesanan Barang Sesuai Kota</h3>
-  <hr>
-  <div class="row pesbarrow">
-    <?php echo $kotalist ?>
-
-  </div>
-  <hr>
-  <h1 class="d-none d-lg-block d-md-block">Lihat Produk Pre-Order</h1>
-    <h3 class="d-block d-lg-none d-md-none ">Lihat Produk Pre-Order</h3>
+  <h1 class="d-none d-lg-block d-md-block"><?php echo $title ?></h1>
+    <h3 class="d-block d-lg-none d-md-none "><?php echo $title ?></h3>
   <hr>
   <div class="row">
 <?php echo $produklist;?>
 
   </div>
-  <br>
-<a href="produklist.php"><button class="btn w-100 btn-outline-primary">Lebih Banyak Barang ></button></a>
+
+
+
 <hr>
 Powered By culayCMS . GitHub -> <a href="https://github.com/ahlamls/culayCMS">https://github.com/ahlamls/culayCMS</a>
 </main>
-<script>
-function pesbarclick(aidi) {
-  window.location.href = "produklist.php?kota=" + aidi;
-}
-</script>
 
 <?php
 require_once "modular/footer.php" ?>

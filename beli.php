@@ -1,6 +1,24 @@
 <?php
 require_once "modular/header.php";
-$aidix = htmlentities($_GET['id']);
+
+haruslogin();
+if (!isset($_GET['id'])){
+  die("ID tidak valid");
+}
+
+$sqlx = "SELECT saldo FROM user WHERE `id` = $uid";
+$resultx = $conn->query($sqlx);
+
+if ($resultx->num_rows > 0) {
+// output data of each row
+while($rowx = $resultx->fetch_assoc()) {
+$saldo = $rowx['saldo'];
+}
+} else {
+  die("Invalid uid");
+}
+
+$aidix = eskep($_GET['id']);
 $sql = "SELECT * FROM produk  WHERE `id` = $aidix";
 $result = $conn->query($sql);
 
@@ -10,6 +28,10 @@ if ($result->num_rows > 0) {
       $gambar = $row['gambar'];
       $judul = $row['judul'];
       $harga = number_format($row['harga']);
+      if ($row['harga'] > $saldo) {
+        header("Location: alert.php?id=1&msg=Saldo Tidak Cukup" );
+        die();
+      }
       $qty = $row['qty'];
       $desk = $row['desk'];
       $kategori_id = $row['kat_id'];
@@ -48,10 +70,10 @@ while($rowx = $resultx->fetch_assoc()) {
 } else {
 $user = "Tidak Diketahui" ;
 }
-      if ($row['type'] == 0) {
-        $badge = "<span class='badge badge-outlined badge-success'>Tersedia</span>";
+      if ($row['type'] == 1) {
+        $badge = "<span class='badge badge-success'>Tersedia</span>";
       } else {
-        $badge = "<span class='badge badge-outlined badge-info'>Tawaran</span>";
+        $badge = "<span class='badge badge-info'>Tawaran</span>";
       }
       $aidi = $row['id'];
 
@@ -60,44 +82,35 @@ $user = "Tidak Diketahui" ;
     die("ID tidak ada");
 }
 
+
 ?>
 <body class="bg-light">
 <?php require_once "modular/navbar.php"?>
 
 <main role="main" class="container">
 <br>
-  <h1 class="d-none d-lg-block d-md-block"><?php echo $judul?></h1>
-    <h3 class="d-block d-lg-none d-md-none "><?php echo $judul?></h3>
+  <h1 class="d-none d-lg-block d-md-block">Beli <?php echo htmlentities($judul) ?></h1>
+    <h3 class="d-block d-lg-none d-md-none ">Beli <?php echo htmlentities($judul) ?></h3>
   <hr>
-  <div class="row pesbarrow">
-<div class="col-xs-12 col-md-8">
-  <div class="f169">
-          <img src="<?php echo $gambar ?>" class="ar169 card-img-top w-100" alt="<?php echo $judul?>">
-        </div>
-</div>
-<div class="col-xs-12 col-md-4">
-<h2>Rp <?php echo $harga ?></h2>
-<p>/ <?php echo $qty?>qty<br>
-<?php echo $badge ?><span class='badge badge-outlined badge-warning'><?php echo $kategori ?></span>
-<hr>
-<b>Kota: </b> <?php echo $kota ?><br>
-<b>Dibuat Oleh: </b> <?php echo $user ?>
-<?php
-if ($uid !== $user_id) {
-?>
-<a href="beli.php?id=<?php echo $aidix?>"><button class="w-100 btn btn-outline-success">Beli</button></a>
-<?php
-} else { ?>
-<a href="hapus.php?id=<?php echo $aidix?>"><button class="w-100 btn btn-outline-danger">Hapus</button></a>
-<?php } ?>
-</div>
-<div class="col-xs-12 col-md-8">
-<hr>
-<p><?php echo $desk ?></p>
-</div>
+        <form action="prosesbeli.php" method="post" enctype="multipart/form-data">
+          <input type="hidden" name="id" value="<?php echo $aidix?>">
+          <div class="row">
 
-  </div>
-  <hr>
+    <div class="form-group col-xs-12 col-md-12">
+          <label for="name">Nama Penerima</label>
+            <input type="text" name="name" class="form-control" id="name" required="">
+          </div>
+              <div class="form-group col-12">
+          <label for="desk">Alamat</label>
+            <textarea type="text" name="alamat" class="form-control" id="alamat" required=""></textarea>
+          </div>
+              <div class="form-group col-xs-12 col-md-6">
+
+</div>
+<br>
+<button type="submit" class="btn w-100 btn-outline-success">Beli Barang (Rp <?php echo $harga?>)</button>
+</form>
+<hr>
 Powered By culayCMS . GitHub -> <a href="https://github.com/ahlamls/culayCMS">https://github.com/ahlamls/culayCMS</a>
 </main>
 

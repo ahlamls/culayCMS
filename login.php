@@ -1,5 +1,5 @@
 <?php
-require_once "koneksi.php";
+require_once "session.php";
 
 $username = eskep($_POST['emailx']);
 $password = eskep(md5(md5(sha1(md5(sha1(md5($_POST['password'])))))));

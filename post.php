@@ -3,7 +3,7 @@ require_once "modular/header.php";
 
 haruslogin();
 
-$katlist = "";
+$katlistx = "";
 $kotalist = "";
 
 $sql = "SELECT * FROM kategori";
@@ -14,7 +14,7 @@ if ($result->num_rows > 0) {
     while($row = $result->fetch_assoc()) {
       $aidi = $row['id'];
       $nama = $row['nama'];
-    $katlist .= "<option value='$aidi'>$nama</option>";
+    $katlistx .= "<option value='$aidi'>$nama</option>";
     }
 } else {
     die("Tidak ada kategori");
@@ -66,7 +66,7 @@ if ($result->num_rows > 0) {
           <label for="kat">Kategori</label>
           <select class="form-control" name="kat" id="kat" required="">
             <option selected disabled>Pilih salah satu</option>
-            <?php echo $katlist ?>
+            <?php echo $katlistx ?>
 
           </select>
          </div>
@@ -94,7 +94,7 @@ if ($result->num_rows > 0) {
 </div>
 </div>
 <br>
-<button type="submit" class="btn w-100 btn-success">Posting Barang</button>
+<button type="submit" class="btn w-100 btn-outline-success">Posting Barang</button>
 </form>
 <hr>
 Powered By culayCMS . GitHub -> <a href="https://github.com/ahlamls/culayCMS">https://github.com/ahlamls/culayCMS</a>

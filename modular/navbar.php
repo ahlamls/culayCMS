@@ -1,4 +1,19 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+<?php
+$katlist = "";
+$sql = "SELECT * FROM kategori";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+      $aidi = $row['id'];
+      $nama = $row['nama'];
+    $katlist .= "<a class='nav-link' href='produklist.php?kat=$aidi'>$nama</a>";
+    }
+} else {
+    $katlist = "<a class='nav-link' href='produklist.php'>Tidak ada Kategori</a>";
+}
+?><nav class="navbar asedx navbar-expand-lg fixed-top navbar-light bg-white-ts">
 <a class="navbar-brand mr-auto mr-lg-0" href="index.php"><img src="assets/image/logo-gloftech.png" class="navlogo">  </a>
 <button class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
 <span class="navbar-toggler-icon"></span>
@@ -6,8 +21,15 @@
 
 <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
 <ul class="navbar-nav mr-auto">
-  <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text" placeholder="Cari Barang.." aria-label="Search">
+  <form class="form-inline" action="produklist.php" action="POST">
+    <?php
+    if (isset($_GET['search'])) {
+      $vsearch = htmlentities($_GET['search']);
+    } else {
+      $vsearch = "";
+    }
+    ?>
+    <input class="form-control mr-sm-2" type="text" name="search" value="<?php echo $vsearch?>" placeholder="Cari Barang.." aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
   </form>
 </ul>
@@ -16,7 +38,7 @@
   <a class="nav-link" href="index.php">Beranda</a>
 </li>
 <li class="nav-item">
-  <a class="nav-link" href="#">Cara Kerja</a>
+  <a class="nav-link" href="carakerja.php">Cara Kerja</a>
 </li>
 <li class="nav-item">
 <div class="nav-link">
@@ -25,7 +47,7 @@
 
 if (!$login) {?>
 <li class="nav-item">
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#LoginModal">
+  <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#LoginModal">
   Daftar atau Masuk
   </button>
 </li>
@@ -51,18 +73,20 @@ $conn->close();
      </a>
      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
       <a class="dropdown-item"  href="saldo.php"><b>Saldo: Rp <?php echo number_format($saldo) ?></b></a>
+             <a class="dropdown-item" href="produklist.php?user=<?php echo $uid?>">Postingan Saya</a>
        <a class="dropdown-item" href="trx.php">Transaksi</a>
        <div class="dropdown-divider"></div>
        <a class="dropdown-item" href="logout.php">Logout</a>
      </div>
    </li>
+   <li class="nav-item">
+     <a href="post.php"><button type="button" class="btn btn-outline-success">
+     Post
+   </button></a>
+   </li>
 </div>
 
-<li class="nav-item">
-  <a href="post.php"><button type="button" class="btn btn-success">
-  Post
-</button></a>
-</li>
+
 </div>
 <?php } ?>
 
@@ -72,13 +96,7 @@ $conn->close();
 
 <div class="nav-scroller bg-white shadow-sm">
 <nav class="nav nav-underline">
+<?php echo $katlist ?>
 
-<a class="nav-link" href="#">Makanan/Minuman</a>
-<a class="nav-link" href="#">Koleksi</a>
-<a class="nav-link" href="#">Teknologi</a>
-<a class="nav-link" href="#">Fashion</a>
-<a class="nav-link" href="#">Olahraga</a>
-<a class="nav-link" href="#">Kecantikan</a>
-<a class="nav-link" href="#">Rumah Tangga</a>
 </nav>
 </div>

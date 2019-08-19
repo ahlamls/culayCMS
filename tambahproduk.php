@@ -23,10 +23,10 @@ if ($terupload) {
     $sql = "INSERT INTO `produk` (`id`, `judul`, `desk`, `harga`, `type`, `qty`, `gambar`, `kota_id`, `kat_id`, `user_id`) VALUES (NULL, '$name', '$desk', '$harga', '$type', '$qty', '$file', '$kota', '$kat', '$uid');";
 
 if ($conn->query($sql) === TRUE) {
-  header("Location: alert.php?id=1&msg=Produk berhasil dibuat!");
+  header("Location: alert.php?id=2&msg=Produk berhasil dibuat!");
   die();
 } else {
-  header("Location: alert.php?id=1&msg=UGagal membuat produk " . $conn->error);
+  header("Location: alert.php?id=1&msg=Gagal membuat produk " . $conn->error);
   die();
 }
 
