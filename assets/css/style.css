@@ -162,3 +162,6 @@ border-bottom-style: solid;
 .bg-white-ts{
   background-color: rgba(255,255,255,0.9) !important;
 }
+.xpad {
+  padding:10px;
+}

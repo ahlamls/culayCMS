@@ -113,6 +113,7 @@ $produklist .= "<div class='col-xs-12 col-md-3 pcard'>
 <?php require_once "modular/navbar.php"?>
 
 <main role="main" class="container">
+  <?php require_once "modular/carousel.php" ?>
 <br>
   <h1 class="d-none d-lg-block d-md-block">Lihat Pesanan Barang Sesuai Kota</h1>
     <h3 class="d-block d-lg-none d-md-none ">Lihat Pesanan Barang Sesuai Kota</h3>
