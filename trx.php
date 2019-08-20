@@ -51,7 +51,7 @@ if ($result->num_rows > 0) {
         <td>$alamat</td>
         <td>$status</td>
         <td>Rp $harga</td>
-        <td>Ubah Status</td>
+        <td><a href='ubahstatus.php?id=$aidi'><button class='btn btn-outline-success'>Ubah Status</button></td>
 
       </tr>";
     }

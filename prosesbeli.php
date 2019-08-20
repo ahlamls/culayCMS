@@ -70,7 +70,7 @@ if ($conn->query($sql) === TRUE) {
   die();
 }
 
-$sql = "INSERT INTO `transaksi` (`id`, `penerima`, `nama` , `alamat`, `produk_id`, `penjual_id`, `pembeli_id`, `status`,`harga`) VALUES (NULL, '$nama', '$alamat', '$judul' ,  '$aidix', '$user_id', '$uid', 'Menunggu Diproses Penjual','$hargaori');";
+$sql = "INSERT INTO `transaksi` (`id`, `penerima`, `nama` , `alamat`, `produk_id`, `penjual_id`, `pembeli_id`, `status`,`harga`) VALUES (NULL, '$nama', '$judul', '$alamat' ,  '$aidix', '$user_id', '$uid', 'Menunggu Diproses Penjual','$hargaori');";
 
 if ($conn->query($sql) === TRUE) {
   header("Location: alert.php?id=2&msg=Pembelian $judul Seharga $harga Telah Berhasil . Silahkan cek menu transaksi!");
