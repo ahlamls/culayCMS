@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 19, 2019 at 04:07 PM
+-- Generation Time: Aug 20, 2019 at 11:27 AM
 -- Server version: 5.7.27-0ubuntu0.18.04.1
 -- PHP Version: 7.0.33-10+ubuntu18.04.1+deb.sury.org+1
 
@@ -118,8 +118,8 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `penerima`, `nama`, `alamat`, `produk_id`, `penjual_id`, `pembeli_id`, `status`, `harga`) VALUES
-(3, 'Baon Kicadap', 'Kadal Gurun', 'Jl . asede no 69', 2, 2, 1, 'Menunggu Diproses Penjual', 800000),
-(4, 'Amak Kalian', 'jl brikasap femeli', 'Cheat Point Blank Wallhack Anti Ban', 7, 1, 2, 'Menunggu Diproses Penjual', 50000);
+(3, 'Baon Kicadap', 'Kadal Gurun', 'Jl . asede no 69', 2, 2, 1, 'Diproses', 800000),
+(4, 'Amak Kalian', 'Cheat Point Blank Wallhack Ati ban', 'jl brikasap femeli', 7, 1, 2, 'Menunggu Diproses Penjual', 50000);
 
 -- --------------------------------------------------------
 
@@ -141,8 +141,10 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `name`, `email`, `password`, `saldo`) VALUES
-(1, 'baoncikadap', 'Baon Cikadap', 'baon@cikadap.com', 'e607cf1d9200895b67a77528c385fd01', 300000),
-(2, 'bstrax', 'B Strax', 'bstrax@amakkalian.com', 'e607cf1d9200895b67a77528c385fd01', 701000);
+(1, 'baoncikadap', 'Baon Cikadap', 'baon@cikadap.com', 'e607cf1d9200895b67a77528c385fd01', 300004),
+(2, 'bstrax', 'B Strax', 'bstrax@amakkalian.com', 'e607cf1d9200895b67a77528c385fd01', 701000),
+(3, 'yoga', 'Solusi Agoy', 'yoga@solusi.com', 'e607cf1d9200895b67a77528c385fd01', 69000),
+(4, 'fajar', 'Fajar', 'fajarkintil@gmail.com', 'e607cf1d9200895b67a77528c385fd01', 0);
 
 --
 -- Indexes for dumped tables
@@ -206,7 +208,7 @@ ALTER TABLE `transaksi`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
