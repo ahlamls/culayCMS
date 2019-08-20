@@ -1,5 +1,6 @@
 <?php
 require_once "modular/header.php";
+haruslogin();
 $sql = "SELECT saldo FROM user WHERE `id` = $uid";
 $result = $conn->query($sql);
 
@@ -24,8 +25,8 @@ if ($result->num_rows > 0) {
 <p>Saldo Gloftech</p>
 <hr>
 <div class="row">
-<button type="button" class="col-6 w-100 btn btn-outline-success">Top Up</button>
-<button type="button" class="col-6 w-100 btn btn-outline-danger">Withdraw</button>
+<button type="button" class="col-6 w-100 btn btn-outline-success" data-toggle="modal" data-target="#TopModal">Top Up</button>
+<button type="button" class="col-6 w-100 btn btn-outline-danger" data-toggle="modal" data-target="#TopModal">Withdraw</button>
 </div>
 </center>
 
