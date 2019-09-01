@@ -133,7 +133,7 @@ $produklist .= "<div class='col-xs-12 col-md-3 pcard'>
   <br>
 <a href="produklist.php"><button class="btn w-100 btn-outline-primary">Lebih Banyak Barang ></button></a>
 <hr>
-Powered By culayCMS . GitHub -> <a href="https://github.com/ahlamls/culayCMS">https://github.com/ahlamls/culayCMS</a>
+
 </main>
 <script>
 function pesbarclick(aidi) {

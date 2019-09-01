@@ -156,7 +156,7 @@ $produklist .= "<div class='col-xs-12 col-md-3 pcard'>
 
 
 <hr>
-Powered By culayCMS . GitHub -> <a href="https://github.com/ahlamls/culayCMS">https://github.com/ahlamls/culayCMS</a>
+
 </main>
 
 <?php

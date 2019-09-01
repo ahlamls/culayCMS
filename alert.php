@@ -22,7 +22,7 @@ $text = "text-success";
 </div>
 </div>
 <hr>
-Powered By culayCMS . GitHub -> <a href="https://github.com/ahlamls/culayCMS">https://github.com/ahlamls/culayCMS</a>
+
 </main>
 
 <?php echo $kotalist2 ?>

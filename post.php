@@ -97,7 +97,7 @@ if ($result->num_rows > 0) {
 <button type="submit" class="btn w-100 btn-outline-success">Posting Barang</button>
 </form>
 <hr>
-Powered By culayCMS . GitHub -> <a href="https://github.com/ahlamls/culayCMS">https://github.com/ahlamls/culayCMS</a>
+
 </main>
 
 <?php

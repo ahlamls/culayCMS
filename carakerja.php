@@ -14,7 +14,7 @@ Coming Soon!
 
 
 <hr>
-Powered By culayCMS . GitHub -> <a href="https://github.com/ahlamls/culayCMS">https://github.com/ahlamls/culayCMS</a>
+
 </main>
 
 <?php

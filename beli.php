@@ -111,7 +111,7 @@ $user = "Tidak Diketahui" ;
 <button type="submit" class="btn w-100 btn-outline-success">Beli Barang (Rp <?php echo $harga?>)</button>
 </form>
 <hr>
-Powered By culayCMS . GitHub -> <a href="https://github.com/ahlamls/culayCMS">https://github.com/ahlamls/culayCMS</a>
+
 </main>
 
 <?php

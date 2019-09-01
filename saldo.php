@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
 
 
 <hr>
-Powered By culayCMS . GitHub -> <a href="https://github.com/ahlamls/culayCMS">https://github.com/ahlamls/culayCMS</a>
+
 </main>
 
 <?php
